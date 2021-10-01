@@ -41,6 +41,6 @@ def compare(username, password):
 
 
 if __name__ == '__main__':
-    encode('XerwinXpl', 'mypassowrd')
+    encode('XerwinXpl', 'mypassword')
     print(compare('XerwinXpl', 'mypassword'))
     print(compare('XerwinXpl', 'anotherpassword'))
