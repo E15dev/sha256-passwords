@@ -1,6 +1,7 @@
 import os
 import _sha256 as sha
 
+
 def encode(username, password):
     try:
         file = open('../pm/' + str(username) + '.txt', 'w')
@@ -12,6 +13,7 @@ def encode(username, password):
     except:
         return False
     
+
 def compare(username, password):
     file = open('../pm/' + str(username) + '.txt', 'r')
     p = str(password).encode()
@@ -23,6 +25,7 @@ def compare(username, password):
     else:
         return False
     return False
+
 
 if __name__  == '__main__':
     encode('XerwinXpl', 'mypassowrd')
