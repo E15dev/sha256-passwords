@@ -1,4 +1,3 @@
-import os
 import pickle
 import _sha256 as sha
 
@@ -17,7 +16,7 @@ def encode(username, password):
         p = str(password).encode()
         p = sha.sha256(p).digest()
         d.append(str(p))
-        file.write(pickle.dump(d, file))  # TODO : FIX THIS
+        pickle.dump(d, file)  # TODO : FIX THIS
         file.close()
         return True
     except:
@@ -32,7 +31,7 @@ def compare(username, password):
     p = sha.sha256(p).digest()
     d = [str(p)]
     # tp = str(file.read())
-    bf.write(pickle.dump(d, bf))  # TODO : FIX THIS TOO
+    pickle.dump(d, bf)  # TODO : FIX THIS TOO
     bf.close()
     bf = open('./buffer.txt', 'rb')
     if bf.read() == file.read():
