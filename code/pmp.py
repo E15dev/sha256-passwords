@@ -1,4 +1,5 @@
-import os,pickle
+import os
+import pickle
 import _sha256 as sha
 
 
@@ -16,7 +17,7 @@ def encode(username, password):
         p = str(password).encode()
         p = sha.sha256(p).digest()
         d.append(str(p))
-        file.write(pickle.dump(d, file)) # TODO : FIX THIS
+        file.write(pickle.dump(d, file))  # TODO : FIX THIS
         file.close()
         return True
     except:
@@ -29,20 +30,18 @@ def compare(username, password):
     file = open('../pm/' + str(username) + '.txt', 'rb')
     p = str(password).encode()
     p = sha.sha256(p).digest()
-    d = []
-    d.append(str(p))
+    d = [str(p)]
     # tp = str(file.read())
-    bf.write(pickle.dump(d, bf)) # TODO : FIX THIS TOO
+    bf.write(pickle.dump(d, bf))  # TODO : FIX THIS TOO
     bf.close()
     bf = open('./buffer.txt', 'rb')
-    if  bf.read() == file.read():
+    if bf.read() == file.read():
         return True
     else:
         return False
-    return False
 
 
-if __name__  == '__main__':
+if __name__ == '__main__':
     encode('XerwinXpl', 'mypassowrd')
     print(compare('XerwinXpl', 'mypassword'))
     print(compare('XerwinXpl', 'anotherpassword'))
