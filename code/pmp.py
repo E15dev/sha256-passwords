@@ -13,9 +13,11 @@ def encode(username, password):
         _clearbuffer()
         file = open('../pm/' + str(username) + '.txt', 'wb')
         d = []
+        u = ste(username).encode()
+        u = sha.sha256(u).digest()
         p = str(password).encode()
         p = sha.sha256(p).digest()
-        d.append(str(p))
+        d.append(str(p) + str(u))
         pickle.dump(d, file)
         file.close()
         return True
@@ -27,9 +29,11 @@ def compare(username, password):
     _clearbuffer()
     bf = open('./buffer.txt', 'wb')
     file = open('../pm/' + str(username) + '.txt', 'rb')
+    u = ste(username).encode()
+    u = sha.sha256(u).digest()
     p = str(password).encode()
     p = sha.sha256(p).digest()
-    d = [str(p)]
+    d = [str(p) + str(u)]
     # tp = str(file.read())
     pickle.dump(d, bf)
     bf.close()
