@@ -5,9 +5,11 @@ import _sha256 as sha
 def encode(username, password):
     try:
         file = open('../pm/' + str(username) + '.txt', 'w')
+        u = ste(username).encode()
+        u = sha.sha256(u).digest()
         p = str(password).encode()
         p = sha.sha256(p).digest()
-        file.write(str(p))
+        file.write(str(p) + str(u))
         file.close()
         return True
     except:
@@ -16,11 +18,13 @@ def encode(username, password):
 
 def compare(username, password):
     file = open('../pm/' + str(username) + '.txt', 'r')
+    u = ste(username).encode()
+    u = sha.sha256(u).digest()
     p = str(password).encode()
     p = sha.sha256(p).digest()
     tp = str(file.read())
     file.close()
-    if str(p) == tp:
+    if (str(p) + str(u)) == tp:
         return True
     else:
         return False
